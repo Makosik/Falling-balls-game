@@ -8,6 +8,8 @@ let isGameRunning = false;
 let score = 0;
 let totalBalls = 0;
 let balls = [];
+let speedIncreased = false;
+let speedPlus = 3;
 
 // Create Ball class
 class Ball {
@@ -15,7 +17,7 @@ class Ball {
       this.x = Math.floor(Math.random() * (canvas.width - 20)) + 10;
       this.y = 0;
       this.radius = 10;
-      this.speed = 3;
+      this.speed = speedPlus;
    }
 
    // Move ball down the screen
@@ -46,9 +48,9 @@ function drawBasket() {
 function moveBasket(event) {
    if (isGameRunning) {
       if (event.keyCode == 37 && basketX > 0) {
-         basketX -= 10;
+         basketX -= 20;
       } else if (event.keyCode == 39 && basketX < canvas.width - basketWidth) {
-         basketX += 10;
+         basketX += 20;
       }
    }
 }
@@ -68,7 +70,7 @@ function gameLoop() {
       drawBasket();
 
       // Generate new ball
-      if (Math.random() < 0.015) {
+      if (Math.random() < 0.015) { ////////////////////
          balls.push(new Ball());
          totalBalls++;
       }
@@ -96,11 +98,22 @@ function gameLoop() {
          }
       });
 
+     
       // Increase ball speed over time
-      if (score % 10 == 0 && score > 0) {
+      if (score >= 20 &&score < 40 && !speedIncreased) {
+         speedPlus += 1;
          balls.forEach((ball) => {
-            ball.speed += 1;
+            balls.speed = speedPlus;
          });
+         console.log(speedPlus)
+         speedIncreased = true
+      }else if(score>=40 && score <=100 && speedIncreased){
+         speedPlus += 1;
+         balls.forEach((ball) => {
+            balls.speed = speedPlus;
+         });
+         console.log(speedPlus)
+         speedIncreased = false;
       }
 
       // Check for game over
@@ -109,7 +122,6 @@ function gameLoop() {
          updateResult();
          alert("Game over!");
       }
-
       // Request next frame
       requestAnimationFrame(gameLoop);
    }
@@ -123,6 +135,7 @@ function startGame() {
       balls = [];
       updateResult();
       gameLoop();
+      
    }
 }
 

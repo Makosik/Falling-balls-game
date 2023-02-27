@@ -16,11 +16,12 @@ body{
    gap: 50px;
 }
 .btn{
-   width: 100px;
+   width: 110px;
    height: 50px;
    border-radius: 10px;
    transition: all 0.8s;
    font-size: 16px;
+   font-weight: bold;
 }
 .bnt_start:hover{
    background: #28af43;

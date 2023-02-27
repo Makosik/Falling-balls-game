@@ -60,8 +60,7 @@ function updateResult() {
    const result = document.getElementById("result");
    let percentage = 0;
    if (totalBalls == 0) {
-      
-   }else{
+      }else{
       percentage = ((score / totalBalls) * 100).toFixed(2);
    }
    result.innerHTML = `Score: ${score}/${totalBalls} (${percentage}%)`;
@@ -75,7 +74,7 @@ function gameLoop() {
       drawBasket();
 
       // Generate new ball
-      if (Math.random() < 0.015) { ////////////////////
+      if (Math.random() < 0.012) { 
          balls.push(new Ball());
          totalBalls++;
       }

@@ -58,7 +58,12 @@ function moveBasket(event) {
 // Update score and total balls caught
 function updateResult() {
    const result = document.getElementById("result");
-   const percentage = ((score / totalBalls) * 100).toFixed(2);
+   let percentage = 0;
+   if (totalBalls == 0) {
+      
+   }else{
+      percentage = ((score / totalBalls) * 100).toFixed(2);
+   }
    result.innerHTML = `Score: ${score}/${totalBalls} (${percentage}%)`;
 }
 
@@ -98,16 +103,16 @@ function gameLoop() {
          }
       });
 
-     
+
       // Increase ball speed over time
-      if (score >= 20 &&score < 40 && !speedIncreased) {
+      if (score >= 20 && score < 40 && !speedIncreased) {
          speedPlus += 1;
          balls.forEach((ball) => {
             balls.speed = speedPlus;
          });
          console.log(speedPlus)
          speedIncreased = true
-      }else if(score>=40 && score <=100 && speedIncreased){
+      } else if (score >= 40 && score <= 100 && speedIncreased) {
          speedPlus += 1;
          balls.forEach((ball) => {
             balls.speed = speedPlus;
@@ -135,7 +140,7 @@ function startGame() {
       balls = [];
       updateResult();
       gameLoop();
-      
+
    }
 }
 

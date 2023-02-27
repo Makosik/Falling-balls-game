@@ -8,12 +8,15 @@
    <title>Falling Balls</title>
 </head>
 <body>
-   <canvas id="canvas" width="400" height="400"></canvas>
-   <div>
-     <button onclick="startGame()">Start Game</button>
-     <button onclick="stopGame()">Stop Game</button>
+   <div class="wrap">
+      <canvas id="canvas" width="400" height="400"></canvas>
+      <div class="btns">
+         <button class="bnt_start btn" onclick="startGame()">Start Game</button>
+         <button class="btn_stop btn" onclick="stopGame()">Stop Game</button>
+       </div>
+       <p id="result"></p>
    </div>
-   <p id="result"></p>
+   
    <script src="/js/script.js"></script>
  </body>
 </html>
